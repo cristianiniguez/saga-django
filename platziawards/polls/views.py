@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Question
 
 
 def index(request):
-    return HttpResponse('You are in the main page of Platzi Awards')
+    questions = Question.objects.all()
+    return render(request, 'polls/index.html', {'questions': questions})
 
 
 def detail(request, question_id):
